@@ -36,16 +36,12 @@ class ReconhecedorAfazeres
  
   REGEX_DATA_NUMERICA = %r{\b(\d{1,2})/(\d{1,2})(?:/(\d{2,4}))?\b}.freeze
  
-  REGEX_DATA_RELATIVA =
-    /(?<![\p{L}])(hoje|amanh[ãa]|depois de amanh[ãa])(?![\p{L}])/iu.freeze
+  REGEX_DATA_RELATIVA = /(?<![\p{L}])(hoje|amanh[ãa]|depois de amanh[ãa])(?![\p{L}])/iu.freeze
  
-  REGEX_DATA_TEXTUAL =
-    /\b(\d{1,2})\s*(?:de\s+)?(janeiro|fevereiro|mar[çc]o|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\s*(?:de\s+)?(\d{4})?\b/i.freeze
+  REGEX_DATA_TEXTUAL = /\b(\d{1,2})\s*(?:de\s+)?(janeiro|fevereiro|mar[çc]o|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\s*(?:de\s+)?(\d{4})?\b/i.freeze
  
   REGEX_ACAO = /\b(#{ACOES.join('|')})\b/i.freeze
  
-  REGEX_NOME =
-    /[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\p{L}]+(?:\s+(?:de|da|do|dos|das)\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\p{L}]+|\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\p{L}]+)*/u.freeze
+  REGEX_NOME = /[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\p{L}]+(?:\s+(?:de|da|do|dos|das)\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\p{L}]+|\s+[A-ZÁÉÍÓÚÂÊÔÃÕÇ][\p{L}]+)*/u.freeze
  
-  REGEX_PESSOA =
-    /(?i:\b(?:com|para|pra|ao|à))\s+(#{REGEX_NOME}(?:\s+e\s+#{REGEX_NOME})*)/u.freeze
+  REGEX_PESSOA = /(?i:\b(?:com|para|pra|ao|à))\s+(#{REGEX_NOME}(?:\s+e\s+#{REGEX_NOME})*)/u.freeze
