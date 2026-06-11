@@ -24,9 +24,18 @@ A data exibida para termos relativos, como `hoje`, `amanhã` e `depois de amanh�
 
 ## Teoria envolvida
 
-O projeto se baseia em **expressões regulares**, que descrevem exatamente a classe das **linguagens regulares** — a classe de linguagens reconhecida pelos **autômatos finitos**. Cada categoria de informação (data, horário, tag, etc.) é tratada como uma linguagem regular própria, descrita por um padrão que aceita as cadeias válidas daquela categoria e rejeita as demais.
+O projeto se baseia em **expressões regulares**, que descrevem exatamente a classe das **linguagens regulares** — o nível mais restrito da Hierarquia de Chomsky, reconhecido por **autômatos finitos determinísticos (DFA)** e não-determinísticos (NFA).
 
-Em vez de combinar substrings manualmente, cada padrão delega ao motor de regex do Ruby (Onigmo) o reconhecimento das cadeias, o que torna a modelagem declarativa: descreve-se *qual* é a forma esperada, e não *como* percorrer o texto caractere a caractere.
+Pelo **Teorema de Kleene**, toda linguagem regular pode ser descrita por uma expressão regular e vice-versa. Isso garante que existe um autômato finito equivalente para cada padrão definido neste projeto. O motor de regex do Ruby (Onigmo) compila internamente cada expressão em um NFA e o executa sobre a cadeia de entrada — percorrendo o texto sem backtracking excessivo e sem precisar de memória proporcional ao tamanho da entrada (propriedade dos autômatos finitos).
+
+Cada categoria de informação (data, horário, tag, etc.) é tratada como uma **linguagem regular independente**:
+
+- A linguagem dos horários com dois-pontos é `L₁ = {HH:MM | H,M ∈ {0..9}}`, regular e reconhecível por um DFA de poucos estados.
+- A linguagem das tags é `L₂ = {#w | w ∈ (Σ_letra ∪ Σ_dígito ∪ {_,-})⁺}`, também regular.
+- A linguagem das ações é uma **união finita** de linguagens singleton `{agendar} ∪ {marcar} ∪ ...` — a classe das linguagens regulares é fechada sob união, portanto o resultado é regular.
+- Datas relativas como `hoje`, `amanhã` e `depois de amanhã` formam uma linguagem finita, que é um caso particular de linguagem regular.
+
+Em vez de combinar substrings manualmente, cada padrão delega ao motor (Onigmo) o papel do reconhecedor, tornando a modelagem declarativa: descreve-se *qual* é a forma esperada (a linguagem), e não *como* percorrer o texto caractere a caractere (o autômato).
 
 Foram definidos padrões para:
 
