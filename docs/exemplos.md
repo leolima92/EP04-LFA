@@ -4,17 +4,17 @@ Este documento apresenta exemplos de entradas e saídas para validar o funcionam
 
 Os exemplos foram escolhidos para cobrir os principais padrões exigidos no trabalho:
 
-* horários;
-* datas;
-* pessoas;
-* ações;
-* tags;
-* URLs;
-* emails;
-* datas relativas;
-* datas textuais;
-* datas numéricas;
-* casos inválidos.
+- horários;
+- datas;
+- pessoas;
+- ações;
+- tags;
+- URLs;
+- emails;
+- datas relativas;
+- datas textuais;
+- datas numéricas;
+- casos inválidos.
 
 As datas relativas como `hoje`, `amanhã` e `depois de amanhã` dependem da data atual do computador no momento da execução.
 
@@ -46,12 +46,12 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Agendar`
-* pessoa: `José`
-* ação complementar: `reunião`
-* horário: `10:00`
-* data relativa: `amanhã`
-* tag: `#trabalho`
+- ação: `Agendar`;
+- pessoa: `José`;
+- ação complementar: `reunião`;
+- horário: `10:00`;
+- data relativa: `amanhã`;
+- tag: `#trabalho`.
 
 ---
 
@@ -79,11 +79,11 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Marcar`
-* pessoas: `Pedro` e `João`
-* horário com espaço: `10 30`
-* data textual completa: `13 de agosto de 2021`
-* tag: `#faculdade`
+- ação: `Marcar`;
+- pessoas: `Pedro` e `João`;
+- horário com espaço: `10 30`;
+- data textual completa: `13 de agosto de 2021`;
+- tag: `#faculdade`.
 
 ---
 
@@ -111,11 +111,11 @@ Email: jose.da-silva@sp.senac.br
 
 ### Padrões testados
 
-* ação: `Enviar`
-* pessoa: `Maria`
-* data numérica completa: `20/04/2022`
-* horário por extenso: `10 horas`
-* email: `jose.da-silva@sp.senac.br`
+- ação: `Enviar`;
+- pessoa: `Maria`;
+- data numérica completa: `20/04/2022`;
+- horário por extenso: `10 horas`;
+- email: `jose.da-silva@sp.senac.br`.
 
 ---
 
@@ -143,10 +143,10 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Revisar`
-* URL completa com âncora e parâmetros;
-* data relativa composta: `depois de amanhã`
-* tag: `#trabalho`
+- ação: `Revisar`;
+- URL completa com âncora e parâmetros;
+- data relativa composta: `depois de amanhã`;
+- tag externa: `#trabalho`.
 
 ### Observação
 
@@ -178,11 +178,11 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Ligar`
-* pessoa com nome composto: `Ana Clara`
-* data textual sem a palavra `de`: `18 agosto`
-* horário por extenso: `1 hora`
-* tag: `#casa`
+- ação: `Ligar`;
+- pessoa com nome composto: `Ana Clara`;
+- data textual sem a palavra `de`: `18 agosto`;
+- horário por extenso: `1 hora`;
+- tag: `#casa`.
 
 ---
 
@@ -210,11 +210,11 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Comprar`
-* pessoa: `João`
-* data textual com ano: `18 de agosto 2023`
-* horário no formato `às 15`
-* tag: `#casa`
+- ação: `Comprar`;
+- pessoa: `João`;
+- data textual com ano: `18 de agosto 2023`;
+- horário no formato `às 15`;
+- tag: `#casa`.
 
 ---
 
@@ -242,10 +242,10 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Pagar`
-* data numérica sem ano: `30/01`
-* horário abreviado: `9h`
-* tag: `#financeiro`
+- ação: `Pagar`;
+- data numérica sem ano: `30/01`;
+- horário abreviado: `9h`;
+- tag: `#financeiro`.
 
 ### Observação
 
@@ -277,10 +277,10 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Estudar`
-* data relativa: `hoje`
-* horário com dois-pontos: `20:30`
-* tag: `#faculdade`
+- ação: `Estudar`;
+- data relativa: `hoje`;
+- horário com dois-pontos: `20:30`;
+- tag: `#faculdade`.
 
 ---
 
@@ -308,11 +308,11 @@ Email: contato+info@empresa.org
 
 ### Padrões testados
 
-* ação: `Responder`
-* pessoa: `Carlos`
-* data relativa: `hoje`
-* email com sinal de `+`
-* tag: `#trabalho`
+- ação: `Responder`;
+- pessoa: `Carlos`;
+- data relativa: `hoje`;
+- email com sinal de `+`;
+- tag: `#trabalho`.
 
 ---
 
@@ -340,11 +340,11 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Agendar`
-* pessoa: `Pedro`
-* data inválida: `31/02`
-* horário válido: `10:00`
-* tag: `#trabalho`
+- ação: `Agendar`;
+- pessoa: `Pedro`;
+- data inválida: `31/02`;
+- horário válido: `10:00`;
+- tag: `#trabalho`.
 
 ### Observação
 
@@ -376,11 +376,11 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Reunião`
-* pessoa: `Maria`
-* data relativa: `amanhã`
-* horário inválido: `99:99`
-* tag: `#trabalho`
+- ação: `Reunião`;
+- pessoa: `Maria`;
+- data relativa: `amanhã`;
+- horário inválido: `99:99`;
+- tag: `#trabalho`.
 
 ### Observação
 
@@ -412,9 +412,9 @@ Email: não encontrado
 
 ### Padrões testados
 
-* ação: `Revisar`
-* URL completa;
-* data relativa: `amanhã`
+- ação: `Revisar`;
+- URL completa;
+- data relativa: `amanhã`.
 
 ### Observação
 
@@ -452,22 +452,22 @@ Este exemplo verifica se o programa lida corretamente com entradas que não poss
 
 ## Resumo dos formatos testados
 
-| Categoria               | Exemplos testados                                        |
-| ----------------------- | -------------------------------------------------------- |
-| Horário com dois-pontos | `10:00`, `20:30`                                         |
-| Horário com espaço      | `10 30`                                                  |
-| Horário por extenso     | `10 horas`, `1 hora`, `9h`                               |
-| Horário com `às`        | `às 15`                                                  |
-| Data relativa           | `hoje`, `amanhã`, `depois de amanhã`                     |
-| Data numérica           | `30/01`, `20/04/2022`                                    |
-| Data textual            | `13 de agosto de 2021`, `18 agosto`, `18 de agosto 2023` |
-| Pessoa simples          | `José`, `Maria`, `Carlos`                                |
-| Pessoa composta         | `Ana Clara`                                              |
-| Duas pessoas            | `Pedro e João`                                           |
-| Tag                     | `#trabalho`, `#casa`, `#faculdade`                       |
-| URL                     | `https://sp.senac.br/pag1#teste?aula=1&teste=4`          |
-| Email                   | `jose.da-silva@sp.senac.br`, `contato+info@empresa.org`  |
-| Casos inválidos         | `31/02`, `99:99`                                         |
+| Categoria | Exemplos testados |
+|---|---|
+| Horário com dois-pontos | `10:00`, `20:30` |
+| Horário com espaço | `10 30` |
+| Horário por extenso | `10 horas`, `1 hora`, `9h` |
+| Horário com `às` | `às 15` |
+| Data relativa | `hoje`, `amanhã`, `depois de amanhã` |
+| Data numérica | `30/01`, `20/04/2022` |
+| Data textual | `13 de agosto de 2021`, `18 agosto`, `18 de agosto 2023` |
+| Pessoa simples | `José`, `Maria`, `Carlos` |
+| Pessoa composta | `Ana Clara` |
+| Duas pessoas | `Pedro e João` |
+| Tag | `#trabalho`, `#casa`, `#faculdade` |
+| URL | `https://sp.senac.br/pag1#teste?aula=1&teste=4` |
+| Email | `jose.da-silva@sp.senac.br`, `contato+info@empresa.org` |
+| Casos inválidos | `31/02`, `99:99` |
 
 ---
 
