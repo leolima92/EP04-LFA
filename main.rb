@@ -64,6 +64,7 @@ class ReconhecedorAfazeres
 
     texto.scan(REGEX_DATA_RELATIVA) do |match|
       termo = match[0].downcase
+
       data = if termo =~ /depois de amanh/
                hoje + 2
              elsif termo =~ /amanh/
@@ -71,6 +72,7 @@ class ReconhecedorAfazeres
              else
                hoje
              end
+
       datas << data.strftime('%d/%m/%Y')
     end
 
@@ -80,11 +82,12 @@ class ReconhecedorAfazeres
              else
                hoje.year
              end
+
       begin
         data = Date.new(year, m.to_i, d.to_i)
         datas << data.strftime('%d/%m/%Y')
       rescue ArgumentError
-        # data inválida, ignora
+        # Data inválida, ignora.
       end
     end
 
@@ -93,11 +96,12 @@ class ReconhecedorAfazeres
       next unless mes
 
       year = y ? y.to_i : hoje.year
+
       begin
         data = Date.new(year, mes, d.to_i)
         datas << data.strftime('%d/%m/%Y')
       rescue ArgumentError
-        # data inválida, ignora
+        # Data inválida, ignora.
       end
     end
 
@@ -109,17 +113,18 @@ class ReconhecedorAfazeres
     horarios = []
 
     texto_limpo.scan(REGEX_HORA_COM_MINUTO) do |h, m|
-      horarios << format('%02d:%02d', h.to_i, m.to_i)
+      horario = formatar_horario(h.to_i, m.to_i)
+      horarios << horario if horario
     end
 
     texto_limpo.scan(REGEX_AS_HORA) do |match|
-      hora_str = format('%02d:00', match[0].to_i)
-      horarios << hora_str unless horarios.include?(hora_str)
+      horario = formatar_horario(match[0].to_i, 0)
+      horarios << horario if horario && !horarios.include?(horario)
     end
 
     texto_limpo.scan(REGEX_HORA_POR_EXTENSO) do |match|
-      hora_str = format('%02d:00', match[0].to_i)
-      horarios << hora_str unless horarios.include?(hora_str)
+      horario = formatar_horario(match[0].to_i, 0)
+      horarios << horario if horario && !horarios.include?(horario)
     end
 
     horarios.uniq
@@ -127,9 +132,13 @@ class ReconhecedorAfazeres
 
   def extrair_pessoas(texto)
     pessoas = []
+
     texto.scan(REGEX_PESSOA) do |match|
-      match[0].split(/\s+e\s+/i).each { |n| pessoas << n.strip }
+      match[0].split(/\s+e\s+/i).each do |nome|
+        pessoas << nome.strip
+      end
     end
+
     pessoas.uniq
   end
 
@@ -150,6 +159,29 @@ class ReconhecedorAfazeres
     texto_limpo = texto.gsub(REGEX_URL, '')
     texto_limpo.scan(REGEX_EMAIL).uniq
   end
+
+  private
+
+  def formatar_horario(hora, minuto)
+    return nil unless hora.between?(0, 23)
+    return nil unless minuto.between?(0, 59)
+
+    format('%02d:%02d', hora, minuto)
+  end
+end
+
+def exibir_resultado(resultado)
+  nao_encontrado = 'não encontrado'
+
+  puts "\nElementos reconhecidos:"
+  puts '-' * 30
+  puts "Dia: #{resultado[:datas].empty? ? nao_encontrado : resultado[:datas].join(', ')}"
+  puts "Horário: #{resultado[:horarios].empty? ? nao_encontrado : resultado[:horarios].join(', ')}"
+  puts "Pessoa: #{resultado[:pessoas].empty? ? nao_encontrado : resultado[:pessoas].join(', ')}"
+  puts "Ação: #{resultado[:acoes].empty? ? nao_encontrado : resultado[:acoes].join(', ')}"
+  puts "Tag: #{resultado[:tags].empty? ? nao_encontrado : resultado[:tags].join(', ')}"
+  puts "URL: #{resultado[:urls].empty? ? nao_encontrado : resultado[:urls].join(', ')}"
+  puts "Email: #{resultado[:emails].empty? ? nao_encontrado : resultado[:emails].join(', ')}"
 end
 
 print 'Digite uma tarefa: '
@@ -158,14 +190,4 @@ entrada = gets.chomp
 reconhecedor = ReconhecedorAfazeres.new
 resultado = reconhecedor.extrair(entrada)
 
-nao_encontrado = 'não encontrado'
-
-puts "\nElementos reconhecidos:"
-puts '-' * 30
-puts "Dia: #{resultado[:datas].empty? ? nao_encontrado : resultado[:datas].join(', ')}"
-puts "Horário: #{resultado[:horarios].empty? ? nao_encontrado : resultado[:horarios].join(', ')}"
-puts "Pessoa: #{resultado[:pessoas].empty? ? nao_encontrado : resultado[:pessoas].join(', ')}"
-puts "Ação: #{resultado[:acoes].empty? ? nao_encontrado : resultado[:acoes].join(', ')}"
-puts "Tag: #{resultado[:tags].empty? ? nao_encontrado : resultado[:tags].join(', ')}"
-puts "URL: #{resultado[:urls].empty? ? nao_encontrado : resultado[:urls].join(', ')}"
-puts "Email: #{resultado[:emails].empty? ? nao_encontrado : resultado[:emails].join(', ')}"
+exibir_resultado(resultado)
